@@ -16,6 +16,8 @@ class Solution(object):
                     return [i, j]
 
 Solution 2 is to utilize the dictionary. The searching in Hashmap keys is constant, i.e., O(1).
+The idea is to check if the target pair is in the dictionary keys. If yes, then the current index and the dictionary value will be return. Else, store the current pairs. 
+The nums[i] is treated as the key in the dictionary.
 
 class Solution(object):
     def twoSum(self, nums, target):
