@@ -1,0 +1,31 @@
+Here is the link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+Question: Given a string s, find the length of the longest substring without repeating characters.
+
+Solution: The idea is to check the current char, if there is no repeated char in the current substring, then we add it to the current substring. Else, we update the current substring. 
+
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # left, right
+        # if s[right] not in s[left:right]: update the current solution, right=right+1, right-left+1
+        # else: update left, right-left+1
+        if len(s)==1:
+            return 1
+        curMax = 0
+        left = 0
+        for right in range(1, len(s)):
+            curStr = s[left:right]
+            if s[right] not in curStr:
+                curMax = max(curMax, right-left+1)
+            else:
+                for i in range(left, right):
+                    if s[i]==s[right]:
+                        left = i+1
+                        curMax = max(curMax, right-left+1)
+                        break
+        return curMax
