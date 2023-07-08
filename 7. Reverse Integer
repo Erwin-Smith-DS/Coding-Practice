@@ -1,0 +1,19 @@
+Here is the link: https://leetcode.com/problems/reverse-integer/description/
+
+The easiest way is to convert the integer into string, then reverse the string and then convert it back to integer.
+
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        strX = str(x)
+        sign = ''
+        if strX[0] == '-':
+            sign = '-'
+            strX = strX[1:]
+        
+        ans = strX[::-1]
+        ans = int(sign+ans)
+        return ans if ans>=-2**31 and ans<=2**31-1 else 0
