@@ -1,0 +1,22 @@
+Here is the link: https://leetcode.com/problems/longest-palindromic-substring/description/
+In python, the reverse of strings is easy. We can just use the list operation to compare if the current index has the potential to create longer palindromic substrings.
+
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        # i+1-x = len(curAns)+1 or 2, x = i-len(curAns) (-1)
+
+        # curAns is the current best solution. For i in range(len(s)), check if s[x, i+1] is palindromic. If yes, update the best solution
+
+        curAns = ''
+        for i in range(len(s)):
+            curLen = len(curAns)
+            if i-curLen-1>=0 and s[i-curLen-1:i+1] == s[i-curLen-1:i+1][::-1]:
+                curAns = s[i-curLen-1:i+1]
+            elif i-curLen>=0 and s[i-curLen:i+1] == s[i-curLen:i+1][::-1]:
+                curAns = s[i-curLen:i+1]
+        
+        return curAns
