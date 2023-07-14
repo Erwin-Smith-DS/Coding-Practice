@@ -1,0 +1,19 @@
+Link: https://leetcode.com/problems/longest-common-prefix/description/
+
+We can iterate the char over the strings. If one char doesn't exist in one of the strings, then return the substring without the current char.
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        minLen = min([len(a) for a in strs])
+
+        for i in range(minLen):
+            tmp = strs[0][i]
+            for a in strs[1:]:
+                if tmp != a[i]:
+                    return strs[0][:i]
+
+        return strs[0][:minLen]
