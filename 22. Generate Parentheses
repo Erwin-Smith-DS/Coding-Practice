@@ -1,0 +1,21 @@
+Link: https://leetcode.com/problems/generate-parentheses/description/
+
+This problem can be solved by DFS.
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        ans = []
+
+        def nextParenthesis(p, l, r, ans =[]):
+            if l:
+                nextParenthesis(p+'(', l-1, r)
+            if l<r:
+                nextParenthesis(p+')', l, r-1)
+            if not r:
+                ans.append(p)
+            return ans
+
+        return nextParenthesis('', n,n)
