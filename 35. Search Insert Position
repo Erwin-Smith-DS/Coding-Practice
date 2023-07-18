@@ -1,0 +1,26 @@
+Link: https://leetcode.com/problems/search-insert-position/description/
+
+It is a variant of binary search. However, we need to adjust the codes to solve the edge cases.
+
+class Solution(object):
+    def searchInsert(self, nums, target):
+        left, right = 0,len(nums)-1
+        if nums[0]>=target:
+            return 0
+
+        if nums[-1]==target:
+            return right
+        if nums[-1]<target:
+            return right+1
+
+
+        while left<right:
+            mid = (left+right)//2
+            if nums[mid] == target:
+                return mid
+            if right-left==1 and nums[right]>target>nums[left]:
+                return right
+            if nums[mid]>target:
+                right = mid
+            else:
+                left = mid
