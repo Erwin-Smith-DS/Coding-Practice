@@ -1,0 +1,16 @@
+Link: https://leetcode.com/problems/group-anagrams/description/
+
+The idea is to sort the string in the list and then check if it is in the key of the dictionary.
+class Solution(object):
+    def groupAnagrams(self, strs):
+        # Create a dictionary, key is the sorted string, value is the corresponding strings
+        dic = {}
+
+        for strVal in strs:
+            sortStr = ''.join(sorted(strVal))
+            if sortStr in dic.keys():
+                dic[sortStr].append(strVal)
+            else:
+                dic[sortStr] = [strVal]
+
+        return list(dic.values())
