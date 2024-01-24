@@ -1,0 +1,6 @@
+/* Write your T-SQL query statement below */
+select name from SalesPerson where name not in (
+select distinct S.name
+from SalesPerson S, Company C, Orders O
+where C.com_id = O.com_id and C.name = 'RED' and S.Sales_id = O.sales_id
+);
