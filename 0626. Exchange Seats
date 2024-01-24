@@ -1,0 +1,5 @@
+/* Write your T-SQL query statement below */
+
+select S1.id, S2.student
+from Seat S1, Seat S2
+where (S1.id+1=S2.id and S1.id%2=1) or (S1.id-1=S2.id and S1.id%2=0) or (S1.id%2=1 and S1.id = S2.id and S1.id=(select max(id) from Seat));
