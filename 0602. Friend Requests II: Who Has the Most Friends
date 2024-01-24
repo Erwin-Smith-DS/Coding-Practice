@@ -1,0 +1,21 @@
+/* Write your T-SQL query statement below */
+
+with table_a as(
+select coalesce(A.id, B.id) as id,  COALESCE(A.num_friend_1, 0) + COALESCE(B.num_friend_2, 0) AS num
+from (
+(select accepter_id as id, count(requester_id) as num_friend_1
+from RequestAccepted 
+group by accepter_id) A
+
+full outer join
+
+(select requester_id as id, count(accepter_id) as num_friend_2
+from RequestAccepted 
+group by requester_id) B
+
+on A.id = B.id
+)
+)
+select top 1 id, num
+from table_a 
+order by num desc;
